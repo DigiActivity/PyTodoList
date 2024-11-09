@@ -16,6 +16,11 @@ class TaskManager:
     def validate_index(self, number):
         task = self.tasks[number - 1]
         task.validate()
+
+    # supprimer une tâche via son numéro
+    #  si il y a les tâches 0 1 et 2, number sera 1 2 ou 3
+    def delete_index(self, number):
+        self.tasks.pop(number - 1)
     
     # Lister toutes les tâches en les numérotant
     def __str__(self):
@@ -32,26 +37,3 @@ class TaskManager:
                 texte += "\n"
 
         return texte
-
-
-# TESTS
-
-task_manager = TaskManager()
-
-task = Task("Faire mes lacets")
-task2 = Task("Faire mon sac")
-
-# add_task
-
-task_manager.add_task(task)
-task_manager.add_task(task2)
-
-# validate index
-
-task_manager.validate_index(2)
-
-print(task2.is_done) # True
-
-# formattage
-
-print(task_manager)
