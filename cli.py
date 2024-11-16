@@ -1,5 +1,6 @@
 import os
 from task_manager import TaskManager
+from task import Task
 
 class TaskCLI:
     
@@ -24,14 +25,21 @@ class TaskCLI:
                 choice = input("Choisissez une action (add, remove, done, quit) : ")
             # je suis sûr à cette étape que choice est inclus dans le tableau
 
+            #------- Zone d'actions -------
+            if choice == "quit":
+                continue
 
-
-
-## TESTS ##
-
-task_manager = TaskManager()
-cli = TaskCLI(task_manager)
-
-assert cli.task_manager == task_manager
-
-cli.start()
+            if choice == "add":
+                new_task_text = input("Nom de la tâche : ")
+                new_task = Task(new_task_text)
+                self.task_manager.add_task(new_task)
+            
+            if choice == "remove":
+                index = int(input("Numéro à supprimer : "))
+                self.task_manager.delete_index(index)
+            
+            if choice == "done":
+                index = int(input("Numéro à valider : "))
+                self.task_manager.validate_index(index)
+            
+            choice = None
